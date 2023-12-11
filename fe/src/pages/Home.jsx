@@ -7,6 +7,8 @@ import NavbarComponent from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import ChatBot from "../components/ChatBot";
+// import Skeleton from "react-loading-skeleton";
 
 const Home = () => {
   useEffect(() => {
@@ -96,6 +98,15 @@ const Home = () => {
 
   // code let's go end
 
+  // skeleton
+  // const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 3000);
+  // }, []);
+
   return (
     <>
       <NavbarComponent />
@@ -112,6 +123,7 @@ const Home = () => {
             alt=""
           />
         </div>
+
         <Row className="row-content ms-lg-3 gap-lg-5  ">
           <Col className=" ms-lg-5 ms-lg-4 mt-lg-0 col-lg-4 col-sm-12  d-flex align-items-center justify-content-center">
             <div className="text-content">
@@ -131,6 +143,7 @@ const Home = () => {
               <img src="/img/imghome/imghome2.png" alt="hay" />
             </div>
           </Col>
+          <ChatBot />
         </Row>
       </div>
       <div className="informatif animate-on-scroll">
@@ -142,9 +155,7 @@ const Home = () => {
           />
         </div>
         <div className="content-informatif">
-          <h3 className="text-center  text-white fw-bolder fs-3">
-            Artikel Informatif di Dishfit
-          </h3>
+          <h3 className="text-center  text-white fw-bolder fs-3"></h3>
           <Container className="w-100 d-flex justify-content-center align-items-center ">
             <Row className="row-informatif  gap-lg-4  ">
               <Col className="d-flex mt-lg-4 gap-lg-3 fs-5 text-white ">

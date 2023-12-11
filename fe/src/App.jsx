@@ -1,21 +1,10 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 import { Routes, Route } from "react-router-dom";
-
-import NavbarComponent from "./components/Navbar";
-import Footer from "./components/Footer";
-
-import Header from "./components/Header";
-import HeaderDetail from "./components/HeaderDetail";
 import Resep from "./pages/Resep";
 import DietVegan from "./pages/DietVegan";
 import TipsTrik from "./pages/TipsTrik";
 import Inspirasi from "./pages/Inspirasi";
 import Artikel from "./pages/Artikel";
 import Home from "./pages/Home";
-import { Button, Card, Row, Col, Container } from "react-bootstrap";
 
 import DArtikel1 from "./pages/DArtikel1";
 import DResep1 from "./pages/DResep1";
@@ -37,7 +26,7 @@ import TersimpanPages from "./pages/TersimpanPages";
 import { SyaratKetentuan } from "./pages/SyaratKetentuan";
 import { KebijakanPrivasi } from "./pages/KebijakanPrivasi";
 
-// addmin
+// admin
 import TambahArtikel from "./Admin/TambahArtikel";
 import DietAdmin from "./Admin/DietAdmin";
 import InspirasiAdmin from "./Admin/InspirasiAdmin";
@@ -52,6 +41,7 @@ import EditArtikel from "./Admin/EditArtikel";
 import EditResep from "./Admin/EditResep";
 import EditTips from "./Admin/EditTips";
 import EditInspirasi from "./Admin/EditInspirasi";
+
 
 function App() {
   return (
@@ -106,17 +96,7 @@ function App() {
         <Route path="/editresep/:uuid" Component={EditResep} />
         <Route path="/edittips/:uuid" Component={EditTips} />
         <Route path="/editins/:uuid" Component={EditInspirasi} />
-
-
-
-
       </Routes>
-
-      {/* <DArtikel1/>
-      <DResep1 />
-      <DTips1 />
-      <DInspirasi1/>
-      <DVegan1 /> */}
     </>
   );
 }

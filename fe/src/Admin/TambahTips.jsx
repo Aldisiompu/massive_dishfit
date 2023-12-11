@@ -1,14 +1,10 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarComponent from "../components/Navbar";
-
 import { Link } from "react-router-dom";
+import CkEditor from "../components/CkEditor";
 
 const TambahTips = () => {
   let [uuid, setuuid] = useState("");
@@ -22,32 +18,31 @@ const TambahTips = () => {
   const saveTips = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('uuid', uuid);
-    formData.append('title', title);
-    formData.append('desk', desk);
-    formData.append('fill_content', fill_content);
-    formData.append('img', img);
+    formData.append("uuid", uuid);
+    formData.append("title", title);
+    formData.append("desk", desk);
+    formData.append("fill_content", fill_content);
+    formData.append("img", img);
 
     try {
-        await axios.post('http://localhost:5000/tips', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        navigate("/tips");
+      await axios.post("http://localhost:5000/tips", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigate("/tips");
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
-
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     console.log(file.name);
-    setImg(file)
+    setImg(file);
     if (file) {
       const reader = new FileReader();
-      console.log(reader)
+      console.log(reader);
       reader.onloadend = () => {
         setSelectedImage(reader.result);
       };
@@ -60,12 +55,16 @@ const TambahTips = () => {
   };
 
   setuuid = () => {
-    return uuid = "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-  }
-  setuuid()
-
+    return (uuid = "10000000-1000-4000-8000-100000000000".replace(
+      /[018]/g,
+      (c) =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+    ));
+  };
+  setuuid();
 
   return (
     <>
@@ -121,7 +120,7 @@ const TambahTips = () => {
                     id="article-title"
                     name="article-title"
                     value={title}
-                    onChange={(e) => (setTitle(e.target.value))}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
 
@@ -186,22 +185,17 @@ const TambahTips = () => {
                   <label htmlFor="article-content" className="form-label">
                     Isi Tips & Trik
                   </label>
-                  <div className="App">
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data={fill_content}
-                            
-                        onChange={ ( event, editor) => {
-                          const data = editor.getData();
-                          setFillContent(data);
-                      } }
 
-                    />
-                  </div>
+                  <CkEditor
+                    content={fill_content}
+                    setContent={setFillContent}
+                  />
                 </div>
 
                 <div className="mb-3 button  ">
-                  <button type="submit" onClick={saveTips}>Publikasi</button>
+                  <button type="submit" onClick={saveTips}>
+                    Publikasi
+                  </button>
                   <button type="button" className="ms-lg-4">
                     Batal
                   </button>
