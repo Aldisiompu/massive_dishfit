@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarComponent from "../components/Navbar";
 
 import { Link } from "react-router-dom";
+import CkEditor from "../components/CkEditor";
 
 const TambahResep = () => {
   let [uuid, setuuid] = useState("");
@@ -24,24 +25,24 @@ const TambahResep = () => {
   const saveResep = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('uuid', uuid);
-    formData.append('food_name', food_name);
-    formData.append('ingredient', ingredient);
-    formData.append('food_making', food_making);
-    formData.append('img', img);
-    formData.append('diet', diet);
-    
+    formData.append("uuid", uuid);
+    formData.append("food_name", food_name);
+    formData.append("ingredient", ingredient);
+    formData.append("food_making", food_making);
+    formData.append("img", img);
+    formData.append("diet", diet);
+
     try {
-      await axios.post('http://localhost:5000/recept', formData, {
+      await axios.post("http://localhost:5000/recept", formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
       navigate("/resep");
-  } catch (error) {
+    } catch (error) {
       console.log(error);
-  }
-  }
+    }
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -60,11 +61,16 @@ const TambahResep = () => {
   };
 
   setuuid = () => {
-    return uuid = "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-  }
-  setuuid()
+    return (uuid = "10000000-1000-4000-8000-100000000000".replace(
+      /[018]/g,
+      (c) =>
+        (
+          c ^
+          (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+        ).toString(16)
+    ));
+  };
+  setuuid();
 
   return (
     <>
@@ -120,7 +126,7 @@ const TambahResep = () => {
                     id="article-title"
                     name="article-title"
                     value={food_name}
-                    onChange={(e) => (setFood_name(e.target.value))}
+                    onChange={(e) => setFood_name(e.target.value)}
                   />
                 </div>
 
@@ -170,39 +176,19 @@ const TambahResep = () => {
                   <label htmlFor="article-content" className="form-label">
                     Cara Pembuatan
                   </label>
-                  <div className="App">
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data={food_making}
-                            
-                        onChange={ ( event, editor) => {
-                          const data = editor.getData();
-                          setFood_making(data);
-                      } }
-
-                    />
-                  </div>
+                  <CkEditor content={food_making} setContent={setFood_making} />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="article-content" className="form-label">
                     Bahan-Bahan
                   </label>
-                  <div className="App">
-                    <CKEditor
-                        editor={ ClassicEditor }
-                        data={ingredient}
-                            
-                        onChange={ ( event, editor) => {
-                          const data = editor.getData();
-                          setIngredient(data);
-                      } }
-
-                    />
-                </div>
+                  <CkEditor content={ingredient} setContent={setIngredient} />
                 </div>
 
                 <div className="mb-3 button  ">
-                  <button type="submit" onClick={saveResep}>Publikasi</button>
+                  <button type="submit" onClick={saveResep}>
+                    Publikasi
+                  </button>
                   <button type="button" className="ms-lg-4">
                     Batal
                   </button>
