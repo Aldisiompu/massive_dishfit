@@ -1,4 +1,4 @@
-export const dataVegatarian = [
+export const dataVegetarian = [
     {
       imgCard: "img/diet/vegetarian/1.jpg",
       title: "Bircher Muesli",

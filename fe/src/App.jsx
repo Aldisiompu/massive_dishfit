@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Resep from "./pages/Resep";
 import DietVegan from "./pages/DietVegan";
+import DietVegetarian from "./pages/DietVegetarian";
+import DietDiabetik from "./pages/DietDiabetik";
 import TipsTrik from "./pages/TipsTrik";
 import Inspirasi from "./pages/Inspirasi";
 import Artikel from "./pages/Artikel";
@@ -53,6 +55,8 @@ function App() {
         <Route path="/tips" element={<TipsTrik />} />
         <Route path="/inspirasi" element={<Inspirasi />} />
         <Route path="/vegan" element={<DietVegan />} />
+        <Route path="/vegetarian" element={<DietVegetarian/>} />
+        <Route path="/diabetik" element={<DietDiabetik/>} />
         <Route path="/syaratketentuan" element={<SyaratKetentuan />} />
         <Route path="/kebijakanprivasi" element={<KebijakanPrivasi />} />
 

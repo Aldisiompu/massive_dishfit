@@ -28,10 +28,10 @@ const NavbarComponent = () => {
                 Inspirasi
               </NavLink>
               <NavDropdown title="Diet Khusus" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1" id="dropdown-item">
+                <NavDropdown.Item href="/diabetik" id="dropdown-item">
                   Diabetik
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2" id="dropdown-item">
+                <NavDropdown.Item href="/vegetarian" id="dropdown-item">
                   Vegetarian
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/vegan" id="dropdown-item">
